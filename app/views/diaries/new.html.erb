@@ -1,0 +1,19 @@
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">山行登録</h1>
+    <%= form_tag("/diaries/create") do %>
+      <div class="form">
+        <div class="form-body">
+          <% @diary.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
+          <p>買ったもの</p>
+          <input name="item" value="<%= @diary.item %>">
+          <input type="submit" value="投稿">
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

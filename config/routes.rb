@@ -1,8 +1,21 @@
 Rails.application.routes.draw do
-  get 'diaries/index'
-  get 'posts/index'
-  get 'users/show'
-  get 'user/show'
-  get 'home/top'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get "login" => "users#login_form"
+  post "login" => "users#login"
+  post "logout" => "users#logout"
+
+  post "users/:id/update" => "users#update"
+  get "users/:id/edit" => "users#edit"
+  post "users/create" => "users#create"
+  get "signup" => "users#new"
+  get "users/:id" => "users#show"
+
+  get 'diaries/index' => "diaries/index"
+  get "diaries/new" => "diaries#new"
+  get "diaries/:id" => "diaries#show"
+  post "diaries/create" => "diaries#create"
+  get "diaries/:id/edit" => "diaries#edit"
+  post "diaries/:id/update" => "diaries#update"
+  post "diaries/:id/destroy" => "diaries#destroy"
+
+  get '/' => "home#top"
 end

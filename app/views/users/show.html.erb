@@ -1,2 +1,20 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+      <h2><%= @user.name %></h2>
+      <% if @user.id == @current_user.id %>
+        <%= link_to("編集", "/users/#{@user.id}/edit") %>
+      <% end %>
+    </div>
+
+    <% @user.diaries.each do |diary| %>
+    <div class="posts-index-item">
+      <div class="post-right">
+        <div class="post-project-name">
+          <%= link_to(diary.item, "/diaries/#{diary.id}") %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
