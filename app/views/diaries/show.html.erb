@@ -7,6 +7,15 @@
       <p>
         <%= @diary.item %>
       </p>
+      <p>
+        <%= "総額：#{@diary.price*@diary.item_number}" %>
+      </p>
+      <p>
+        <%= "単価：#{@diary.price}" %>
+      </p>
+      <p>
+        <%= "個数：#{@diary.item_number}" %>
+      </p>
       <div class="post-time">
 
       </div>
