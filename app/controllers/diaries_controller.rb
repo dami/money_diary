@@ -2,6 +2,14 @@ class DiariesController < ApplicationController
   before_action :authenticate_user
   before_action :ensure_correct_user, {only: [:show,:edit,:update,:destroy]}
 
+
+  def search
+    @diaries = Diary.where(user_id: @current_user.id).where(item: params[:item])
+    @search_item = params[:item]
+  end
+
+
+
   def index
     @diaries = Diary.where(user_id: @current_user.id)
   end

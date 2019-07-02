@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   get "signup" => "users#new"
   get "users/:id" => "users#show"
 
-  get 'diaries/index' => "diaries/index"
+  get 'diaries/index' => "diaries#index"
   get "diaries/new" => "diaries#new"
+  get 'diaries/search' => "diaries#search"
   get "diaries/:id" => "diaries#show"
   post "diaries/create" => "diaries#create"
   get "diaries/:id/edit" => "diaries#edit"

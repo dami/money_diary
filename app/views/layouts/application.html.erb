@@ -26,6 +26,12 @@
       <li>
         <%= link_to("買ったもの登録", "/diaries/new") %>
       </li>
+      <%= form_tag("/diaries/search",:method => 'get') do %>
+      <li>
+      <input name="item" placeholder="<%= "買ったもの検索" %>">
+      <input type="submit" value="検索">
+      </li>
+      <%end%>
       <li>
         <%= link_to("ログアウト", "/logout", {method: "post"}) %>
       </li>
