@@ -2,13 +2,29 @@ class DiariesController < ApplicationController
   before_action :authenticate_user
   before_action :ensure_correct_user, {only: [:show,:edit,:update,:destroy]}
 
+  def day
+    @diaries = Diary.where(user_id: @current_user.id).where(purchase_date: params[:purchase_date])
+    @purchase_date = Date.parse(params[:purchase_date]).strftime('%Y年%m月%d日')
+  end
+
+  def month
+    year = params[:purchase_date][:"#{Date.today}(1i)"]
+    month = "%#02d" %  params[:purchase_date][:"#{Date.today}(2i)"]
+    date = year + "-" + month
+    #@diaries = Diary.search(1000)
+    @purchase_date = year + "年" + month + "月"
+  end
+#['purchase_date LIKE ?', "#{date}%"]
+  def year
+    year = params[:purchase_date][:"#{Date.today}(1i)"]
+    @diaries = Diary.where(user_id: @current_user.id).where(purchase_date: "params[:purchase_date]")
+    @purchase_date = year + "年"
+  end
 
   def search
     @diaries = Diary.where(user_id: @current_user.id).where(item: params[:item])
     @search_item = params[:item]
   end
-
-
 
   def index
     @diaries = Diary.where(user_id: @current_user.id)
@@ -47,7 +63,7 @@ class DiariesController < ApplicationController
     @diary = Diary.find_by(id: params[:id])
     @diary.item = params[:item]
     @diary.item_number = params[:item_number]
-    @diary.price = params[:item_number]
+    @diary.price = params[:price]
     @diary.purchase_date = params[:purchase_date]
     if @diary.save
       flash[:notice] = "投稿を編集しました"

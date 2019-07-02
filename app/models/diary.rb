@@ -5,6 +5,10 @@ class Diary < ApplicationRecord
   validates :item_number, {presence: true}
   validates :purchase_date, {presence: true}
 
+  def self.search(search) #self.でクラスメソッドとしている
+      Diary.where(['price LIKE ?', "%#{search}%"])
+  end
+
   def user
     return User.find_by(id: self.user_id)
   end
