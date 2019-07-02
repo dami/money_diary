@@ -28,7 +28,8 @@ class DiariesController < ApplicationController
       item: params[:item],
       user_id: @current_user.id,
       item_number: params[:item_number],
-      price: params[:price]
+      price: params[:price],
+      purchase_date: params[:purchase_date]
     )
     if @diary.save
       flash[:notice]="投稿を作成しました"
@@ -47,6 +48,7 @@ class DiariesController < ApplicationController
     @diary.item = params[:item]
     @diary.item_number = params[:item_number]
     @diary.price = params[:item_number]
+    @diary.purchase_date = params[:purchase_date]
     if @diary.save
       flash[:notice] = "投稿を編集しました"
       redirect_to("/diaries/index")

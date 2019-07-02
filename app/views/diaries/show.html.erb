@@ -8,13 +8,16 @@
         <%= @diary.item %>
       </p>
       <p>
-        <%= "総額：#{@diary.price*@diary.item_number}" %>
+        <%= "総額：#{@diary.price*@diary.item_number}円" %>
       </p>
       <p>
-        <%= "単価：#{@diary.price}" %>
+        <%= "単価：#{@diary.price}円" %>
       </p>
       <p>
         <%= "個数：#{@diary.item_number}" %>
+      </p>
+      <p>
+        <%= "購入日：#{@diary.purchase_date.strftime('%Y年%m月%d日')}" %>
       </p>
       <div class="post-time">
 

@@ -5,6 +5,12 @@
         <div class="post-right">
           <div class="post-project-name">
             <%= link_to(diary.item, "/diaries/#{diary.id}") %>
+            <p>
+              <%= "総額：#{diary.price*diary.item_number}円" %>
+            </p>
+            <p>
+              <%= "購入日：#{diary.purchase_date.strftime('%Y年%m月%d日')}" %>
+            </p>
           </div>
         </div>
       </div>

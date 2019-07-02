@@ -15,7 +15,9 @@
           <input name="price" value="<%= @diary.price %>">
           <p>個数</p>
           <input name="item_number" value="<%= @diary.item_number %>">
-          <input type="submit" value="投稿">
+          <p>購入日<p>
+          <%= date_field_tag :purchase_date, Date.today, use_two_digit_numbers: true%>
+          <input type="submit" value="登録">
         </div>
       </div>
     <% end %>
