@@ -3,21 +3,29 @@ class DiariesController < ApplicationController
   before_action :ensure_correct_user, {only: [:show,:edit,:update,:destroy]}
 
   def day
-    @diaries = Diary.where(user_id: @current_user.id).where(purchase_date: params[:purchase_date])
-    @purchase_date = Date.parse(params[:purchase_date]).strftime('%Y年%m月%d日')
+    year = params[:purchase_date][:"#{Date.today}(1i)"]
+    month = "%#02d" %  params[:purchase_date][:"#{Date.today}(2i)"]
+    day = "%#02d" %  params[:purchase_date][:"#{Date.today}(3i)"]
+    date = year + "-" + month + "-" +day
+    @diaries = Diary.where(user_id: @current_user.id).where(purchase_date: date)
+    @purchase_date = Date.parse(date).strftime('%Y年%m月%d日')
   end
 
   def month
     year = params[:purchase_date][:"#{Date.today}(1i)"]
     month = "%#02d" %  params[:purchase_date][:"#{Date.today}(2i)"]
-    date = year + "-" + month
-    #@diaries = Diary.search(1000)
+    day = "%#02d" %  params[:purchase_date][:"#{Date.today}(3i)"]
+    date = year + "-" + month + "-" +day
+    @diaries = Diary.where(user_id: @current_user.id).where(purchase_date: date.in_time_zone.all_month)
     @purchase_date = year + "年" + month + "月"
   end
-#['purchase_date LIKE ?', "#{date}%"]
+
   def year
     year = params[:purchase_date][:"#{Date.today}(1i)"]
-    @diaries = Diary.where(user_id: @current_user.id).where(purchase_date: "params[:purchase_date]")
+    month = "%#02d" %  params[:purchase_date][:"#{Date.today}(2i)"]
+    day = "%#02d" %  params[:purchase_date][:"#{Date.today}(3i)"]
+    date = year + "-" + month + "-" + day
+    @diaries = Diary.where(user_id: @current_user.id).where(purchase_date: date.in_time_zone.all_year)
     @purchase_date = year + "年"
   end
 

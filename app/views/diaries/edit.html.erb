@@ -16,7 +16,7 @@
           <p>個数</p>
           <input name="item_number" value="<%= @diary.item_number %>">
           <p>購入日<p>
-          <%= date_field_tag :purchase_date, Date.today, use_two_digit_numbers: true%>
+          <%= date_field_tag :purchase_date, @diary.purchase_date, use_two_digit_numbers: true%>
           <input type="submit" value="保存">
         </div>
       </div>

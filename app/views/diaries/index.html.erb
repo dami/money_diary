@@ -12,7 +12,7 @@
     <%end%>
     <%= form_tag("/diaries/day",:method => 'get') do %>
     <p>日次集計</p>
-    <%= date_field_tag :purchase_date, Date.today, use_two_digit_numbers: true%>
+    <%= date_select :purchase_date, Date.today, use_two_digit_numbers: true%>
     <input type="submit" value="検索">
     <%end%>
     <% @diaries.each do |diary| %>
