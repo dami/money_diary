@@ -1,21 +1,31 @@
-<div class="main posts-index">
-  <div class="container">
-    <% if @diaries.present?%>
-    <% @diaries.each do |diary| %>
-    <div class="posts-index-item">
-      <div class="post-right">
-        <div class="post-project-name">
-          <%= link_to(diary.item, "/diaries/#{diary.id}") %>
-        </div>
-      </div>
-    </div>
-    <% end %>
-    <%else%>
-    <% if @search_item.present?%>
-    <%= "#{@search_item}は買ったことがありません"%>
-    <%else%>
-    入力してください
-    <% end %>
-    <% end %>
-  </div>
-</div>
+
+<% if @diaries.present?%>
+
+<table border="1">
+  <tr>
+    <th>買ったもの</th>
+    <th>総額</th>
+    <th>購入日</th>
+  </tr>
+  <% @diaries.each do |diary| %>
+  <tr>
+    <td>
+      <%= link_to(diary.item, "/diaries/#{diary.id}") %>
+    </td>
+    <td>
+      <%= diary.price*diary.item_number %>
+    </td>
+    <td>
+      <%= diary.purchase_date.strftime('%Y年%m月%d日') %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<%else%>
+<% if @search_item.present?%>
+<%= "#{@search_item}は買ったことがありません"%>
+<%else%>
+入力してください
+<% end %>
+<% end %>

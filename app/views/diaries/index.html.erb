@@ -1,34 +1,38 @@
-<div class="main posts-index">
-  <div class="container">
-    <%= form_tag("/diaries/year",:method => 'get') do %>
-    <p>年次集計</p>
-    <%= date_select :purchase_date, Date.today, discard_day: true, discard_month: true%>
-    <input type="submit" value="検索">
-    <%end%>
-    <%= form_tag("/diaries/month",:method => 'get') do %>
-    <p>月次集計</p>
-    <%= date_select :purchase_date, Date.today, discard_day: true%>
-    <input type="submit" value="検索">
-    <%end%>
-    <%= form_tag("/diaries/day",:method => 'get') do %>
-    <p>日次集計</p>
-    <%= date_select :purchase_date, Date.today, use_two_digit_numbers: true%>
-    <input type="submit" value="検索">
-    <%end%>
-    <% @diaries.each do |diary| %>
-    <div class="posts-index-item">
-      <div class="post-right">
-        <div class="post-project-name">
-          <%= link_to(diary.item, "/diaries/#{diary.id}") %>
-          <p>
-            <%= "総額：#{diary.price*diary.item_number}円" %>
-          </p>
-          <p>
-            <%= "購入日：#{diary.purchase_date.strftime('%Y年%m月%d日')}" %>
-          </p>
-        </div>
-      </div>
-    </div>
-    <% end %>
-  </div>
-</div>
+
+<%= form_tag("/diaries/year",:method => 'get') do %>
+<p>年次集計</p>
+<%= date_select :purchase_date, Date.today, discard_day: true, discard_month: true%>
+<input type="submit" value="検索">
+<%end%>
+<%= form_tag("/diaries/month",:method => 'get') do %>
+<p>月次集計</p>
+<%= date_select :purchase_date, Date.today, discard_day: true%>
+<input type="submit" value="検索">
+<%end%>
+<%= form_tag("/diaries/day",:method => 'get') do %>
+<p>日次集計</p>
+<%= date_select :purchase_date, Date.today, use_two_digit_numbers: true%>
+<input type="submit" value="検索">
+<%end%>
+<br>
+
+<table border="1">
+  <tr>
+    <th>買ったもの</th>
+    <th>総額</th>
+    <th>購入日</th>
+  </tr>
+  <% @diaries.each do |diary| %>
+  <tr>
+    <td>
+      <%= link_to(diary.item, "/diaries/#{diary.id}") %>
+    </td>
+    <td>
+      <%= diary.price*diary.item_number %>
+    </td>
+    <td>
+      <%= diary.purchase_date.strftime('%Y年%m月%d日') %>
+    </td>
+  </tr>
+  <% end %>
+</table>

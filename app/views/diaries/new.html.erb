@@ -1,25 +1,18 @@
-<div class="main posts-new">
-  <div class="container">
-    <h1 class="form-heading">買ったもの登録</h1>
-    <%= form_tag("/diaries/create") do %>
-      <div class="form">
-        <div class="form-body">
-          <% @diary.errors.full_messages.each do |message| %>
-            <div class="form-error">
-              <%= message %>
-            </div>
-          <% end %>
-          <p>買ったもの</p>
-          <input name="item" value="<%= @diary.item %>">
-          <p>値段</p>
-          <input name="price" value="<%= @diary.price %>">
-          <p>個数</p>
-          <input name="item_number" value="<%= @diary.item_number %>">
-          <p>購入日<p>
-          <%= date_field_tag :purchase_date, Date.today, use_two_digit_numbers: true%>
-          <input type="submit" value="登録">
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+
+<h1 class="form-heading">買ったもの登録</h1>
+<%= form_tag("/diaries/create") do %>
+<% @diary.errors.full_messages.each do |message| %>
+<%= message %>
+
+<% end %>
+<p>買ったもの</p>
+<input name="item" value="<%= @diary.item %>">
+<p>値段</p>
+<input name="price" value="<%= @diary.price %>">
+<p>個数</p>
+<input name="item_number" value="<%= @diary.item_number %>">
+<p>購入日<p>
+  <%= date_field_tag :purchase_date, Date.today, use_two_digit_numbers: true%>
+  <input type="submit" value="登録">
+
+  <% end %>

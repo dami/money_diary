@@ -1,33 +1,21 @@
-<div class="main posts-show">
-  <div class="container">
-    <div class="posts-show-item">
-      <div class="post-user-name">
-        <%= link_to(@user.name, "/users/#{@user.id}") %>
-      </div>
-      <p>
-        <%= @diary.item %>
-      </p>
-      <p>
-        <%= "総額：#{@diary.price*@diary.item_number}円" %>
-      </p>
-      <p>
-        <%= "単価：#{@diary.price}円" %>
-      </p>
-      <p>
-        <%= "個数：#{@diary.item_number}" %>
-      </p>
-      <p>
-        <%= "購入日：#{@diary.purchase_date.strftime('%Y年%m月%d日')}" %>
-      </p>
-      <div class="post-time">
+<%= link_to(@user.name, "/users/#{@user.id}") %>
+<p>
+  <%= @diary.item %>
+</p>
+<p>
+  <%= "総額：#{@diary.price*@diary.item_number}円" %>
+</p>
+<p>
+  <%= "単価：#{@diary.price}円" %>
+</p>
+<p>
+  <%= "個数：#{@diary.item_number}" %>
+</p>
+<p>
+  <%= "購入日：#{@diary.purchase_date.strftime('%Y年%m月%d日')}" %>
+</p>
 
-      </div>
-      <% if @diary.user_id == @current_user.id %>
-      <div class="post-menus">
-        <%= link_to("編集", "/diaries/#{@diary.id}/edit") %>
-        <%= link_to("削除", "/diaries/#{@diary.id}/destroy", {method: "post"}) %>
-      </div>
-      <% end %>
-    </div>
-  </div>
-</div>
+<% if @diary.user_id == @current_user.id %>
+<%= link_to("編集", "/diaries/#{@diary.id}/edit") %>
+<%= link_to("削除", "/diaries/#{@diary.id}/destroy", {method: "post"}) %>
+<% end %>
