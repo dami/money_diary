@@ -1,5 +1,5 @@
 
-<h1 class="form-heading">編集する</h1>
+<h1>編集する</h1>
 <%= form_tag("/diaries/#{@diary.id}/update") do %>
 
 <% @diary.errors.full_messages.each do |message| %>
